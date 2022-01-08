@@ -1,4 +1,6 @@
-﻿namespace Ardaite.Markup.Lexing;
+﻿using Ardaite.Markup.Exceptions;
+
+namespace Ardaite.Markup.Lexing;
 
 public class Lexer : StreamReader<char>
 {
@@ -58,12 +60,22 @@ public class Lexer : StreamReader<char>
                     Advance();
                 }
 
+                if (IsAtEnd())
+                {
+                    throw new LexerException("Unterminated string");
+                }
+
                 // The closing quote.
                 Advance();
 
                 var content = source[(start + 1)..(Current - 1)];
                 tokens.Add(new Token(TokenType.String, content));
                 break;
+            }
+
+            default:
+            {
+                throw new LexerException($"Unexpected character '{character}'");
             }
         }
     }
