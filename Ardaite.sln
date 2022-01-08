@@ -1,6 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ardaite.Markup", "Ardaite.Markup\Ardaite.Markup.csproj", "{E3D1B0D6-CE3E-4326-A1FB-2809BB7E006F}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ardaite.Markup", "Ardaite.Markup\Ardaite.Markup.csproj", "{E3D1B0D6-CE3E-4326-A1FB-2809BB7E006F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ardaite.Markup.Tests", "Ardaite.Markup.Tests\Ardaite.Markup.Tests.csproj", "{13967FC4-5DE6-4A95-BE1E-C79945B1C052}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +17,15 @@ Global
 		{E3D1B0D6-CE3E-4326-A1FB-2809BB7E006F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3D1B0D6-CE3E-4326-A1FB-2809BB7E006F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3D1B0D6-CE3E-4326-A1FB-2809BB7E006F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13967FC4-5DE6-4A95-BE1E-C79945B1C052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13967FC4-5DE6-4A95-BE1E-C79945B1C052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13967FC4-5DE6-4A95-BE1E-C79945B1C052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13967FC4-5DE6-4A95-BE1E-C79945B1C052}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D5890E15-8E52-4185-AF4F-327C7C033735}
 	EndGlobalSection
 EndGlobal
