@@ -10,9 +10,9 @@ public class LexerTests
     {
         var source = "(grid (button))";
 
-        var actual = new Lexer(source).Run();
+        var expected = new Lexer(source).Run();
 
-        var expected = new Token[]
+        var actual = new Token[]
         {
             new Token(TokenType.LeftParenthesis, "("),
             new Token(TokenType.Identifier, "grid"),
@@ -23,6 +23,6 @@ public class LexerTests
             new Token(TokenType.EndOfFile, "")
         };
 
-        Assert.Equal(expected, actual);
+        Assert.Equal(actual, expected);
     }
 }
