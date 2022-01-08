@@ -1,29 +1,28 @@
 ﻿namespace Ardaite.Markup.Lexing;
 
-public class Lexer
+public class Lexer : StreamReader<char>
 {
     private int start;
-    private int current;
 
     private readonly string source;
     private readonly List<Token> tokens;
 
-    public Lexer(string source)
+    public Lexer(string source) : base(source.ToCharArray(), '\0')
     {
         this.source = source;
         tokens = new List<Token>();
     }
 
-    public List<Token> Run()
+    public Token[] Run()
     {
         while (!IsAtEnd())
         {
-            start = current;
+            start = Current;
             Scan();
         }
 
         tokens.Add(new Token(TokenType.EndOfFile, ""));
-        return tokens;
+        return tokens.ToArray();
     }
 
     private void Scan()
@@ -47,7 +46,7 @@ public class Lexer
                     Advance();
                 }
 
-                var identifier = source[start..current];
+                var identifier = source[start..Current];
                 tokens.Add(new Token(TokenType.Identifier, identifier));
                 break;
             }
@@ -62,30 +61,10 @@ public class Lexer
                 // The closing quote.
                 Advance();
 
-                var content = source[(start + 1)..(current - 1)];
+                var content = source[(start + 1)..(Current - 1)];
                 tokens.Add(new Token(TokenType.String, content));
                 break;
             }
         }
     }
-
-    private bool Match(char expected)
-    {
-        if (Peek() == expected)
-        {
-            current++;
-            return true;
-        }
-
-        return false;
-    }
-
-    private char Peek(int distance = 0)
-        => IsAtEnd() ? '\0' : source[current + distance];
-
-    private char Advance()
-        => IsAtEnd() ? '\0' : source[current++];
-
-    private bool IsAtEnd()
-        => current >= source.Length;
 }
