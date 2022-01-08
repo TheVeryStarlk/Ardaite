@@ -33,6 +33,11 @@ public class Lexer : StreamReader<char>
 
         switch (character)
         {
+            case '\n': break;
+            case ' ': break;
+            case '\r': break;
+            case '\t': break;
+
             case '(' or ')':
             {
                 tokens.Add(character is '('
