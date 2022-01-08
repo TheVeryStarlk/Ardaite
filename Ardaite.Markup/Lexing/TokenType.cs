@@ -5,5 +5,6 @@ public enum TokenType
     RightParenthesis,
     LeftParenthesis,
     Identifier,
-    String
+    String,
+    EndOfFile
 }

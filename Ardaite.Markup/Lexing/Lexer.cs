@@ -22,6 +22,7 @@ public class Lexer
             Scan();
         }
 
+        tokens.Add(new Token(TokenType.EndOfFile, ""));
         return tokens;
     }
 
