@@ -2,7 +2,7 @@
 
 public class StreamReader<T>
 {
-    protected int Current { get; private set; }
+    protected int Current { get; set; }
 
     private readonly T[] source;
     private readonly T discardedValue;
@@ -11,18 +11,6 @@ public class StreamReader<T>
     {
         this.source = source;
         this.discardedValue = discardedValue;
-    }
-
-    protected bool Match(T expected)
-    {
-        var peek = Peek();
-        if (peek is not null && peek.Equals(expected))
-        {
-            Current++;
-            return true;
-        }
-
-        return false;
     }
 
     protected T Peek(int distance = 0)

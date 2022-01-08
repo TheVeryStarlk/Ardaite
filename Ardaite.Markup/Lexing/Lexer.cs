@@ -67,4 +67,15 @@ public class Lexer : StreamReader<char>
             }
         }
     }
+
+    private bool Match(char expected)
+    {
+        if (Peek() == expected)
+        {
+            Current++;
+            return true;
+        }
+
+        return false;
+    }
 }
