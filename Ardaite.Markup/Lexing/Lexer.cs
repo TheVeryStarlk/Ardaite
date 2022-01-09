@@ -33,10 +33,10 @@ public class Lexer : StreamReader<char>
 
         switch (character)
         {
-            case '\n': break;
-            case ' ': break;
-            case '\r': break;
-            case '\t': break;
+            case '\n' or ' ' or '\r' or '\t':
+            {
+                break;
+            }
 
             case '=':
             {
