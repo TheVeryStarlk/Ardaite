@@ -6,5 +6,6 @@ public enum TokenType
     LeftParenthesis,
     Identifier,
     String,
+    Equal,
     EndOfFile
 }

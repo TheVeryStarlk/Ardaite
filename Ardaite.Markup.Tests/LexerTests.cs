@@ -10,9 +10,9 @@ public class LexerTests
     {
         var source = "(grid (button))";
 
-        var expected = new Lexer(source).Run();
+        var actual = new Lexer(source).Run();
 
-        var actual = new Token[]
+        var expected = new Token[]
         {
             new Token(TokenType.LeftParenthesis, "("),
             new Token(TokenType.Identifier, "grid"),
@@ -23,6 +23,27 @@ public class LexerTests
             new Token(TokenType.EndOfFile, "")
         };
 
+        Assert.Equal(actual, expected);
+    }
+
+    [Fact]
+    public void PropertiesTagSource_Outputs_CorrectTokens()
+    {
+        var source = "(button text=\"button\")";
+
+        var actual = new Lexer(source).Run();
+
+        var expected = new Token[]
+        {
+            new Token(TokenType.LeftParenthesis, "("),
+            new Token(TokenType.Identifier, "button"),
+            new Token(TokenType.Identifier, "text"),
+            new Token(TokenType.Equal, "="),
+            new Token(TokenType.String, "button"),
+            new Token(TokenType.RightParenthesis, ")"),
+            new Token(TokenType.EndOfFile, "")
+        };
+        
         Assert.Equal(actual, expected);
     }
 }

@@ -38,6 +38,12 @@ public class Lexer : StreamReader<char>
             case '\r': break;
             case '\t': break;
 
+            case '=':
+            {
+                tokens.Add(new Token(TokenType.Equal, character.ToString()));
+                break;
+            }
+
             case '(' or ')':
             {
                 tokens.Add(character is '('
