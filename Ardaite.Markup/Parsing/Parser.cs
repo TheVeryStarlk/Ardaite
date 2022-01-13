@@ -50,7 +50,7 @@ public class Parser : StreamReader<Token>
                         }
                         else
                         {
-                            throw new ParserException(TokenType.Equal, Peek().TokenType);
+                            throw new ParserException(TokenType.String, Peek().TokenType);
                         }
                     }
                 }
