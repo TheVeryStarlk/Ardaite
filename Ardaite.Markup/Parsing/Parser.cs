@@ -1,14 +1,12 @@
-﻿using Ardaite.Markup.Lexing;
+﻿using Ardaite.Markup.Exceptions;
+using Ardaite.Markup.Lexing;
 
 namespace Ardaite.Markup.Parsing;
 
 public class Parser : StreamReader<Token>
 {
-    private readonly Token[] source;
-
     public Parser(Token[] source) : base(source, source.Last())
     {
-        this.source = source;
     }
 
     public TagNode Run()
@@ -24,52 +22,58 @@ public class Parser : StreamReader<Token>
 
         while (!IsAtEnd())
         {
-            if (Peek().TokenType is TokenType.LeftParenthesis)
-            {
-                Advance();
+            Consume(TokenType.LeftParenthesis);
+            name = Consume(TokenType.Identifier).Value;
 
-                if (Peek().TokenType is TokenType.Identifier)
+            while (!IsAtEnd())
+            {
+                if (Peek().TokenType is TokenType.RightParenthesis)
                 {
-                    name = Peek().Value;
+                    return new TagNode(name, properties, children);
+                }
+                else if (Peek().TokenType is TokenType.LeftParenthesis)
+                {
+                    children.Add(ParseExpression());
+                }
+                else
+                {
+                    var property = Peek().Value;
                     Advance();
 
-                    while (true)
+                    if (Peek().TokenType is TokenType.Equal)
                     {
-                        if (Peek().TokenType is TokenType.RightParenthesis)
+                        Advance();
+
+                        if (Peek().TokenType is TokenType.String)
                         {
-                            return new TagNode(name, properties, children);
-                        }
-                        else if (Peek().TokenType is TokenType.LeftParenthesis)
-                        {
-                            children.Add(ParseExpression());
+                            properties.Add(property, new StringNode(Peek().Value));
                         }
                         else
                         {
-                            if (Peek().TokenType is TokenType.Identifier)
-                            {
-                                var property = Peek().Value;
-                                Advance();
-
-                                if (Peek().TokenType is TokenType.Equal)
-                                {
-                                    Advance();
-
-                                    if (Peek().TokenType is TokenType.String)
-                                    {
-                                        properties.Add(property, new StringNode(Peek().Value));
-                                    }
-                                }
-                            }
+                            throw new ParserException(TokenType.String, Peek().TokenType);
                         }
-
-                        Advance();
+                    }
+                    else
+                    {
+                        throw new ParserException(TokenType.Equal, Peek().TokenType);
                     }
                 }
-            }
 
-            Advance();
+                Advance();
+            }
         }
 
         return new TagNode(name, properties, children);
+    }
+
+    private Token Consume(TokenType expected)
+    {
+        var tokenType = Peek().TokenType;
+        if (tokenType == expected)
+        {
+            return Advance();
+        }
+
+        throw new ParserException(expected, tokenType);
     }
 }
