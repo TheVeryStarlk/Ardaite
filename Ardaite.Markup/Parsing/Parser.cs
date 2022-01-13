@@ -35,7 +35,7 @@ public class Parser : StreamReader<Token>
                 {
                     children.Add(ParseExpression());
                 }
-                else
+                else if (Peek().TokenType is TokenType.Identifier)
                 {
                     var property = Peek().Value;
                     Advance();
@@ -50,12 +50,8 @@ public class Parser : StreamReader<Token>
                         }
                         else
                         {
-                            throw new ParserException(TokenType.String, Peek().TokenType);
+                            throw new ParserException(TokenType.Equal, Peek().TokenType);
                         }
-                    }
-                    else
-                    {
-                        throw new ParserException(TokenType.Equal, Peek().TokenType);
                     }
                 }
 
