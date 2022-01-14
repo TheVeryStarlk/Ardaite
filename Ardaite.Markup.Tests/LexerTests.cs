@@ -23,7 +23,7 @@ public class LexerTests
             new Token(TokenType.EndOfFile, "")
         };
 
-        Assert.Equal(actual, expected);
+        Assert.Equal(expected, actual);
     }
 
     [Fact]
@@ -44,6 +44,6 @@ public class LexerTests
             new Token(TokenType.EndOfFile, "")
         };
         
-        Assert.Equal(actual, expected);
+        Assert.Equal(expected, actual);
     }
 }

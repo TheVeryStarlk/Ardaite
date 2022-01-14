@@ -35,8 +35,6 @@ public class Parser : StreamReader<Token>
                 {
                     children.Add(ParseExpression());
                 }
-                
-                // TODO: Improve parsing the properties, and write unit-tests for the parser.
                 else if (Peek().TokenType is TokenType.Identifier)
                 {
                     var property = Peek().Value;
