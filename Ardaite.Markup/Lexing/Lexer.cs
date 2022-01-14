@@ -23,7 +23,7 @@ public class Lexer : StreamReader<char>
             Scan();
         }
 
-        tokens.Add(new Token(TokenType.EndOfFile, ""));
+        tokens.Add(new Token(TokenType.End, ""));
         return tokens.ToArray();
     }
 

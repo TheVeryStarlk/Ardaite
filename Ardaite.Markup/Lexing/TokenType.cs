@@ -7,5 +7,5 @@ public enum TokenType
     Identifier,
     String,
     Equal,
-    EndOfFile
+    End
 }

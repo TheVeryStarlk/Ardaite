@@ -20,7 +20,7 @@ public class LexerTests
             new Token(TokenType.Identifier, "button"),
             new Token(TokenType.RightParenthesis, ")"),
             new Token(TokenType.RightParenthesis, ")"),
-            new Token(TokenType.EndOfFile, "")
+            new Token(TokenType.End, "")
         };
 
         Assert.Equal(expected, actual);
@@ -41,7 +41,7 @@ public class LexerTests
             new Token(TokenType.Equal, "="),
             new Token(TokenType.String, "button"),
             new Token(TokenType.RightParenthesis, ")"),
-            new Token(TokenType.EndOfFile, "")
+            new Token(TokenType.End, "")
         };
         
         Assert.Equal(expected, actual);
