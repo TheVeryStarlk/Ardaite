@@ -19,42 +19,37 @@ public class Parser : StreamReader<Token>
 
     private TagNode ParseExpression()
     {
-        var name = "";
+        Consume(TokenType.LeftParenthesis);
+        var name = Consume(TokenType.Identifier).Value;
         var properties = new Dictionary<string, StringNode>();
         var children = new List<TagNode>();
 
         while (!IsAtEnd())
         {
-            Consume(TokenType.LeftParenthesis);
-            name = Consume(TokenType.Identifier).Value;
-
-            while (!IsAtEnd())
+            if (Peek().TokenType is TokenType.RightParenthesis)
             {
-                if (Peek().TokenType is TokenType.RightParenthesis)
+                return new TagNode(name, properties, children);
+            }
+            else if (Peek().TokenType is TokenType.LeftParenthesis)
+            {
+                children.Add(ParseExpression());
+            }
+            else
+            {
+                var property = Consume(TokenType.Identifier).Value;
+                Consume(TokenType.Equal);
+
+                if (Peek().TokenType is TokenType.String)
                 {
-                    return new TagNode(name, properties, children);
-                }
-                else if (Peek().TokenType is TokenType.LeftParenthesis)
-                {
-                    children.Add(ParseExpression());
+                    properties.Add(property, new StringNode(Peek().Value));
                 }
                 else
                 {
-                    var property = Consume(TokenType.Identifier).Value;
-                    Consume(TokenType.Equal);
-
-                    if (Peek().TokenType is TokenType.String)
-                    {
-                        properties.Add(property, new StringNode(Peek().Value));
-                    }
-                    else
-                    {
-                        throw new ParserException(TokenType.String, Peek().TokenType);
-                    }
+                    throw new ParserException(TokenType.String, Peek().TokenType);
                 }
-
-                Advance();
             }
+
+            Advance();
         }
 
         return new TagNode(name, properties, children);
