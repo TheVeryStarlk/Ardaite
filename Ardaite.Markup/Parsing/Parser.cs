@@ -35,23 +35,18 @@ public class Parser : StreamReader<Token>
                 {
                     children.Add(ParseExpression());
                 }
-                else if (Peek().TokenType is TokenType.Identifier)
+                else 
                 {
-                    var property = Peek().Value;
-                    Advance();
+                    var property = Consume(TokenType.Identifier).Value;
+                    Consume(TokenType.Equal);
 
-                    if (Peek().TokenType is TokenType.Equal)
+                    if (Peek().TokenType is TokenType.String)
                     {
-                        Advance();
-
-                        if (Peek().TokenType is TokenType.String)
-                        {
-                            properties.Add(property, new StringNode(Peek().Value));
-                        }
-                        else
-                        {
-                            throw new ParserException(TokenType.String, Peek().TokenType);
-                        }
+                        properties.Add(property, new StringNode(Peek().Value));
+                    }
+                    else
+                    {
+                        throw new ParserException(TokenType.String, Peek().TokenType);
                     }
                 }
 
