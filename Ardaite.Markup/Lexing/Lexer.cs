@@ -4,6 +4,7 @@ namespace Ardaite.Markup.Lexing;
 
 public class Lexer : StreamReader<char>
 {
+    private int line = 1;
     private int start;
 
     private readonly string source;
@@ -26,7 +27,7 @@ public class Lexer : StreamReader<char>
             Scan();
         }
 
-        tokens.Add(new Token(TokenType.End, ""));
+        AddToken(TokenType.End, "");
         return tokens.ToArray();
     }
 
@@ -36,22 +37,38 @@ public class Lexer : StreamReader<char>
 
         switch (character)
         {
-            case '\n' or ' ' or '\r' or '\t':
+            case ' ' or '\t':
             {
+                break;
+            }
+
+            case '\r':
+            {
+                if (Peek(1) is '\n')
+                {
+                    line++;
+                    Advance();
+                }
+                break;
+            }
+
+            case '\n':
+            {
+                line++;
                 break;
             }
 
             case '=':
             {
-                tokens.Add(new Token(TokenType.Equal, character.ToString()));
+                AddToken(TokenType.Equal, character.ToString());
                 break;
             }
 
             case '(' or ')':
             {
-                tokens.Add(character is '('
-                    ? new Token(TokenType.LeftParenthesis, character.ToString())
-                    : new Token(TokenType.RightParenthesis, character.ToString()));
+                AddToken(character is '('
+                    ? TokenType.LeftParenthesis
+                    : TokenType.RightParenthesis, character.ToString());
                 break;
             }
 
@@ -63,7 +80,7 @@ public class Lexer : StreamReader<char>
                 }
 
                 var identifier = source[start..Current];
-                tokens.Add(new Token(TokenType.Identifier, identifier));
+                AddToken(TokenType.Identifier, identifier);
                 break;
             }
 
@@ -76,23 +93,30 @@ public class Lexer : StreamReader<char>
 
                 if (IsAtEnd())
                 {
-                    throw new LexerException("Unterminated string");
+                    ThrowError("Unterminated string");
                 }
 
                 // The closing quote.
                 Advance();
 
                 var content = source[(start + 1)..(Current - 1)];
-                tokens.Add(new Token(TokenType.String, content));
+                AddToken(TokenType.String, content);
                 break;
             }
 
             default:
             {
-                throw new LexerException($"Unexpected character '{character}'");
+                ThrowError($"Unexpected character '{character}'");
+                break;
             }
         }
     }
+
+    private void AddToken(TokenType tokenType, string value)
+        => tokens.Add(new Token(tokenType, value, line));
+
+    private void ThrowError(string message)
+        => throw new LexerException(message, line);
 
     private bool Match(char expected)
     {
