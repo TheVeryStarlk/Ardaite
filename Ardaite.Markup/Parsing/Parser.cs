@@ -45,7 +45,7 @@ public class Parser : StreamReader<Token>
                 }
                 else
                 {
-                    throw new ParserException(TokenType.String, Peek().TokenType);
+                    ThrowError(TokenType.String, Peek().TokenType);
                 }
             }
 
@@ -55,6 +55,9 @@ public class Parser : StreamReader<Token>
         return new TagNode(name, properties, children);
     }
 
+    private void ThrowError(TokenType expected, TokenType actual)
+        => throw new ParserException(expected, actual, Line);
+
     private Token Consume(TokenType expected)
     {
         var tokenType = Peek().TokenType;
@@ -63,6 +66,6 @@ public class Parser : StreamReader<Token>
             return Advance();
         }
 
-        throw new ParserException(expected, tokenType);
+        throw new ParserException(expected, tokenType, Line);
     }
 }

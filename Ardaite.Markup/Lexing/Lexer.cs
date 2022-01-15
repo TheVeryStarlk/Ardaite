@@ -4,7 +4,6 @@ namespace Ardaite.Markup.Lexing;
 
 public class Lexer : StreamReader<char>
 {
-    private int line = 1;
     private int start;
 
     private readonly string source;
@@ -46,7 +45,7 @@ public class Lexer : StreamReader<char>
             {
                 if (Peek(1) is '\n')
                 {
-                    line++;
+                    Line++;
                     Advance();
                 }
                 break;
@@ -54,7 +53,7 @@ public class Lexer : StreamReader<char>
 
             case '\n':
             {
-                line++;
+                Line++;
                 break;
             }
 
@@ -113,10 +112,10 @@ public class Lexer : StreamReader<char>
     }
 
     private void AddToken(TokenType tokenType, string value)
-        => tokens.Add(new Token(tokenType, value, line));
+        => tokens.Add(new Token(tokenType, value, Line));
 
     private void ThrowError(string message)
-        => throw new LexerException(message, line);
+        => throw new LexerException(message, Line);
 
     private bool Match(char expected)
     {

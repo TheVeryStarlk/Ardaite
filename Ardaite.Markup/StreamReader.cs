@@ -3,6 +3,7 @@
 public class StreamReader<T>
 {
     protected int Current { get; set; }
+    protected int Line { get; set; } = 1;
 
     private readonly T[] source;
     private readonly T discardedValue;
