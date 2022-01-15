@@ -9,6 +9,9 @@ public class Parser : StreamReader<Token>
     {
     }
 
+    public static TagNode Run(Token[] source)
+        => new Parser(source).Run();
+
     public TagNode Run()
     {
         return ParseExpression();
@@ -35,7 +38,7 @@ public class Parser : StreamReader<Token>
                 {
                     children.Add(ParseExpression());
                 }
-                else 
+                else
                 {
                     var property = Consume(TokenType.Identifier).Value;
                     Consume(TokenType.Equal);
