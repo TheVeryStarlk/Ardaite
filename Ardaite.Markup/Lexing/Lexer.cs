@@ -9,9 +9,9 @@ public class Lexer : StreamReader<char>
     private readonly string source;
     private readonly List<Token> tokens;
 
-    public Lexer(string source) : base(source.ToCharArray(), '\0')
+    public Lexer(string source) : base(source.Replace(Environment.NewLine, "\n").ToCharArray(), '\0')
     {
-        this.source = source;
+        this.source = source.Replace(Environment.NewLine, "\n");
         tokens = new List<Token>();
     }
 
@@ -36,18 +36,8 @@ public class Lexer : StreamReader<char>
 
         switch (character)
         {
-            case ' ' or '\t':
+            case ' ' or '\t' or '\r':
             {
-                break;
-            }
-
-            case '\r':
-            {
-                if (Peek(1) is '\n')
-                {
-                    Line++;
-                    Advance();
-                }
                 break;
             }
 
@@ -115,7 +105,7 @@ public class Lexer : StreamReader<char>
         => tokens.Add(new Token(tokenType, value, Line));
 
     private void ThrowError(string message)
-        => throw new LexerException(message, Line);
+        => throw new LexerException(message, Line, Current);
 
     private bool Match(char expected)
     {

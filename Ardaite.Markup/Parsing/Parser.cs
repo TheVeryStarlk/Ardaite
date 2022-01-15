@@ -56,7 +56,7 @@ public class Parser : StreamReader<Token>
     }
 
     private void ThrowError(TokenType expected, TokenType actual)
-        => throw new ParserException(expected, actual, Line);
+        => throw new ParserException(expected, actual, Line, Current);
 
     private Token Consume(TokenType expected)
     {
@@ -66,6 +66,6 @@ public class Parser : StreamReader<Token>
             return Advance();
         }
 
-        throw new ParserException(expected, tokenType, Line);
+        throw new ParserException(expected, tokenType, Line, Current);
     }
 }
