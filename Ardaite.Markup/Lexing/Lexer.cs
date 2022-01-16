@@ -26,7 +26,7 @@ public class Lexer : StreamReader<char>
             Scan();
         }
 
-        AddToken(TokenType.End, "");
+        AddToken(TokenType.End, "\0");
         return tokens.ToArray();
     }
 
