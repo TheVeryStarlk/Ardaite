@@ -11,7 +11,7 @@ public class Lexer : StreamReader<char>
 
     public Lexer(string source) : base(source.Replace(Environment.NewLine, "\n").ToCharArray(), '\0')
     {
-        this.source = source.Replace(Environment.NewLine, "\n");
+        this.source = source;
         tokens = new List<Token>();
     }
 
