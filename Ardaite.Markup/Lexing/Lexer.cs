@@ -61,7 +61,7 @@ public class Lexer : StreamReader<char>
                 break;
             }
 
-            case >= 'a' and <= 'z' or '_':
+            case >= 'a' and <= 'z' or '-':
             {
                 while (char.IsDigit(Peek()) || char.IsLetter(Peek()) || Match('-'))
                 {
