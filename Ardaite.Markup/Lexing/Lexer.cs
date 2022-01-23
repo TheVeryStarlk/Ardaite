@@ -82,7 +82,7 @@ public class Lexer : StreamReader<char>
 
                 if (IsAtEnd())
                 {
-                    ThrowError("Unterminated string");
+                    ThrowLexerException("Unterminated string");
                 }
 
                 // The closing quote.
@@ -95,13 +95,13 @@ public class Lexer : StreamReader<char>
 
             default:
             {
-                ThrowError($"Unexpected character '{character}'");
+                ThrowLexerException($"Unexpected character '{character}'");
                 break;
             }
         }
     }
 
-    private void ThrowError(string message)
+    private void ThrowLexerException(string message)
         => throw new LexerException(message, Line, Current);
 
     private bool Match(char expected)
