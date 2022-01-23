@@ -26,7 +26,7 @@ public class Lexer : StreamReader<char>
             Scan();
         }
 
-        AddToken(TokenType.End, "\0");
+        tokens.Add(new Token(TokenType.End, "\0"));
         return tokens.ToArray();
     }
 
@@ -49,15 +49,15 @@ public class Lexer : StreamReader<char>
 
             case '=':
             {
-                AddToken(TokenType.Equal, character.ToString());
+                tokens.Add(new Token(TokenType.Equal, "="));
                 break;
             }
 
             case '(' or ')':
             {
-                AddToken(character is '('
+                tokens.Add(new Token(character is '('
                     ? TokenType.LeftParenthesis
-                    : TokenType.RightParenthesis, character.ToString());
+                    : TokenType.RightParenthesis, character.ToString()));
                 break;
             }
 
@@ -69,7 +69,7 @@ public class Lexer : StreamReader<char>
                 }
 
                 var identifier = source[start..Current];
-                AddToken(TokenType.Identifier, identifier);
+                tokens.Add(new Token(TokenType.Identifier, identifier));
                 break;
             }
 
@@ -89,7 +89,7 @@ public class Lexer : StreamReader<char>
                 Advance();
 
                 var content = source[(start + 1)..(Current - 1)];
-                AddToken(TokenType.String, content);
+                tokens.Add(new Token(TokenType.String, content));
                 break;
             }
 
@@ -100,9 +100,6 @@ public class Lexer : StreamReader<char>
             }
         }
     }
-
-    private void AddToken(TokenType tokenType, string value)
-        => tokens.Add(new Token(tokenType, value, Line));
 
     private void ThrowError(string message)
         => throw new LexerException(message, Line, Current);

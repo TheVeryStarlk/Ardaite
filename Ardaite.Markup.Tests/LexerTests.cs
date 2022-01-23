@@ -14,13 +14,13 @@ public class LexerTests
 
         var expected = new Token[]
         {
-            new Token(TokenType.LeftParenthesis, "(", 1),
-            new Token(TokenType.Identifier, "grid", 1),
-            new Token(TokenType.LeftParenthesis, "(", 1),
-            new Token(TokenType.Identifier, "button", 1),
-            new Token(TokenType.RightParenthesis, ")", 1),
-            new Token(TokenType.RightParenthesis, ")", 1),
-            new Token(TokenType.End, "\0", 1)
+            new Token(TokenType.LeftParenthesis, "("),
+            new Token(TokenType.Identifier, "grid"),
+            new Token(TokenType.LeftParenthesis, "("),
+            new Token(TokenType.Identifier, "button"),
+            new Token(TokenType.RightParenthesis, ")"),
+            new Token(TokenType.RightParenthesis, ")"),
+            new Token(TokenType.End, "\0")
         };
 
         Assert.Equal(expected, actual);
@@ -35,13 +35,13 @@ public class LexerTests
 
         var expected = new Token[]
         {
-            new Token(TokenType.LeftParenthesis, "(", 1),
-            new Token(TokenType.Identifier, "button", 1),
-            new Token(TokenType.Identifier, "text", 1),
-            new Token(TokenType.Equal, "=", 1),
-            new Token(TokenType.String, "button", 1),
-            new Token(TokenType.RightParenthesis, ")", 1),
-            new Token(TokenType.End, "\0", 1)
+            new Token(TokenType.LeftParenthesis, "("),
+            new Token(TokenType.Identifier, "button"),
+            new Token(TokenType.Identifier, "text"),
+            new Token(TokenType.Equal, "="),
+            new Token(TokenType.String, "button"),
+            new Token(TokenType.RightParenthesis, ")"),
+            new Token(TokenType.End, "\0")
         };
         
         Assert.Equal(expected, actual);
