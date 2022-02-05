@@ -13,9 +13,7 @@ public class Parser : StreamReader<Token>
         => new Parser(source).Run();
 
     public TagNode Run()
-    {
-        return ParseExpression();
-    }
+        => ParseExpression();
 
     private TagNode ParseExpression()
     {
