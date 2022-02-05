@@ -9,7 +9,7 @@ public class Lexer : StreamReader<char>
     private readonly string source;
     private readonly List<Token> tokens;
 
-    public Lexer(string source) : base(source.Replace(Environment.NewLine, "\n").ToCharArray(), '\0')
+    public Lexer(string source) : base(source.ToCharArray(), '\0')
     {
         this.source = source;
         tokens = new List<Token>();
