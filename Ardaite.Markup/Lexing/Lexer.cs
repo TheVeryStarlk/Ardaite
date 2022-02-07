@@ -18,7 +18,7 @@ public class Lexer : StreamReader<char>
     public static Token[] Run(string source)
         => new Lexer(source).Run();
 
-    public Token[] Run()
+    private Token[] Run()
     {
         while (!IsAtEnd())
         {

@@ -10,7 +10,7 @@ public class LexerTests
     {
         var source = "(grid (button))";
 
-        var actual = new Lexer(source).Run();
+        var actual = Lexer.Run(source);
 
         var expected = new Token[]
         {
@@ -31,7 +31,7 @@ public class LexerTests
     {
         var source = "(button text=\"button\")";
 
-        var actual = new Lexer(source).Run();
+        var actual = Lexer.Run(source);
 
         var expected = new Token[]
         {
@@ -43,7 +43,7 @@ public class LexerTests
             new Token(TokenType.RightParenthesis, ")"),
             new Token(TokenType.End, "\0")
         };
-        
+
         Assert.Equal(expected, actual);
     }
 }

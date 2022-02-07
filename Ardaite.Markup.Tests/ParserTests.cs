@@ -11,9 +11,9 @@ public class ParserTests
     [Fact]
     public void IdentifierSource_Outputs_CorrectIdentifier()
     {
-        var source = new Lexer("(button)").Run();
+        var source = Lexer.Run("(button)");
 
-        var actual = new Parser(source).Run();
+        var actual = Parser.Run(source);
 
         var expected = new TagNode("button", new Dictionary<string, StringNode>(), new List<TagNode>());
 
@@ -23,9 +23,9 @@ public class ParserTests
     [Fact]
     public void PropertiesSource_Outputs_CorrectProperties()
     {
-        var source = new Lexer("(button text=\"button\")").Run();
+        var source = Lexer.Run("(button text=\"button\")");
 
-        var actual = new Parser(source).Run();
+        var actual = Parser.Run(source);
 
         var expected = new TagNode("button", new Dictionary<string, StringNode>()
         {
@@ -38,9 +38,9 @@ public class ParserTests
     [Fact]
     public void ChildrenSource_Outputs_CorrectChildren()
     {
-        var source = new Lexer("(grid (button))").Run();
+        var source = Lexer.Run("(grid (button))");
 
-        var actual = new Parser(source).Run();
+        var actual = Parser.Run(source);
 
         var expected = new TagNode("grid", new Dictionary<string, StringNode>(), new List<TagNode>()
         {

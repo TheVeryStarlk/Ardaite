@@ -16,7 +16,7 @@ public class Deserializer
     public static IControl Run(TagNode source)
         => new Deserializer(source).Run();
 
-    public IControl Run()
+    private IControl Run()
         => Deserialize(source);
 
     private IControl Deserialize(TagNode tagNode)

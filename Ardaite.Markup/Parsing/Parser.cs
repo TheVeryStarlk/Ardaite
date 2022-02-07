@@ -12,7 +12,7 @@ public class Parser : StreamReader<Token>
     public static TagNode Run(Token[] source)
         => new Parser(source).Run();
 
-    public TagNode Run()
+    private TagNode Run()
         => ParseExpression();
 
     private TagNode ParseExpression()
