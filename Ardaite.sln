@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ardaite.Markup.Tests", "Ard
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ardaite.Presentation", "Ardaite.Presentation\Ardaite.Presentation.csproj", "{337A2BBB-EE35-4D58-B7E4-AB3593C68B21}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{63692869-8268-4AAA-B929-6BC739CBA843}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F9DB6506-9769-4243-B281-E0C4E4990E95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ardaite.Presentation.Tests", "Ardaite.Presentation.Tests\Ardaite.Presentation.Tests.csproj", "{25072966-3F58-4D11-9BAA-1EED2D141A54}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,11 +33,21 @@ Global
 		{337A2BBB-EE35-4D58-B7E4-AB3593C68B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{337A2BBB-EE35-4D58-B7E4-AB3593C68B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{337A2BBB-EE35-4D58-B7E4-AB3593C68B21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25072966-3F58-4D11-9BAA-1EED2D141A54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25072966-3F58-4D11-9BAA-1EED2D141A54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25072966-3F58-4D11-9BAA-1EED2D141A54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25072966-3F58-4D11-9BAA-1EED2D141A54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D5890E15-8E52-4185-AF4F-327C7C033735}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E3D1B0D6-CE3E-4326-A1FB-2809BB7E006F} = {63692869-8268-4AAA-B929-6BC739CBA843}
+		{337A2BBB-EE35-4D58-B7E4-AB3593C68B21} = {63692869-8268-4AAA-B929-6BC739CBA843}
+		{13967FC4-5DE6-4A95-BE1E-C79945B1C052} = {F9DB6506-9769-4243-B281-E0C4E4990E95}
+		{25072966-3F58-4D11-9BAA-1EED2D141A54} = {F9DB6506-9769-4243-B281-E0C4E4990E95}
 	EndGlobalSection
 EndGlobal
