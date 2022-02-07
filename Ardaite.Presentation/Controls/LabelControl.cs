@@ -5,14 +5,14 @@ namespace Ardaite.Presentation.Controls;
 
 public class LabelControl : IGraphicalControl
 {
-    public string Content { get; set; }
+    public string Text { get; set; }
     public string Color { get; set; }
     public Vector2f Position { get; set; }
     public Vector2f Size { get; set; }
 
-    public LabelControl(string content, string color = "black", int size = 15)
+    public LabelControl(string text = "", string color = "black", int size = 15)
     {
-        Content = content;
+        Text = text;
         Size = new Vector2f(size, size);
         Color = color.ToLower();
     }
@@ -29,7 +29,7 @@ public class LabelControl : IGraphicalControl
             throw new InvalidOperationException($"{font} was null");
         }
 
-        new Text(Content, font)
+        new Text(Text, font)
         {
             CharacterSize = (uint) Size.X,
             Position = Position,
