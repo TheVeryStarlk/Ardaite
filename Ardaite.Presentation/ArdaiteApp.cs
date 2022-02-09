@@ -1,4 +1,5 @@
 ﻿using Ardaite.Presentation.Controls;
+using Ardaite.Presentation.Exceptions;
 using SFML.Graphics;
 
 namespace Ardaite.Presentation;
@@ -15,12 +16,17 @@ public class ArdaiteApp
 
     public void Run()
     {
-        var windowControl = new WindowControl(control);
-
-        while (windowControl.RenderWindow.IsOpen)
+        if (control is WindowControl window)
         {
-            windowControl.Update();
-            windowControl.Render(windowControl.RenderWindow);
+            while (window.RenderWindow.IsOpen)
+            {
+                window.Update();
+                window.Render(window.RenderWindow);
+            }
+        }
+        else
+        {
+            throw new ArdaiteAppException("The parent control should be a window");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using Ardaite.Markup.Parsing;
 using Ardaite.Presentation.Controls;
+using Ardaite.Presentation.Exceptions;
 
 namespace Ardaite.Presentation;
 
@@ -23,6 +24,23 @@ public class Deserializer
     {
         switch (tagNode.Identifier)
         {
+            case "window":
+            {
+                var widthProperty = GetProperty(tagNode.Properties, "width", "500");
+                var heightProperty = GetProperty(tagNode.Properties, "height", "500");
+                var titleProperty = GetProperty(tagNode.Properties, "title", "Ardaite");
+
+                var children = tagNode.Children.Select(Deserialize).ToList();
+
+                if (children.Count is > 1 or 0)
+                {
+                    throw new DeserializerException("Window control should have only one child");
+                }
+
+                return new WindowControl(children[0], (uint) ParseOrThrow(widthProperty),
+                    (uint) ParseOrThrow(heightProperty), titleProperty);
+            }
+
             case "stack-panel":
             {
                 var spacingProperty = GetProperty(tagNode.Properties, "spacing", "15");
