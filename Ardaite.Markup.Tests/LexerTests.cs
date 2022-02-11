@@ -8,7 +8,7 @@ public class LexerTests
     [Fact]
     public void CustomSource_Outputs_CorrectTokens()
     {
-        var source = "(grid (button))";
+        const string source = "(grid (button))";
 
         var actual = Lexer.Run(source);
 
@@ -29,7 +29,7 @@ public class LexerTests
     [Fact]
     public void PropertiesTagSource_Outputs_CorrectTokens()
     {
-        var source = "(button text=\"button\")";
+        const string source = "(button text=\"button\")";
 
         var actual = Lexer.Run(source);
 

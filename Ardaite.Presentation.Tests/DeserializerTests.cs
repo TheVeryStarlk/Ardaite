@@ -11,7 +11,7 @@ public class DeserializerTests
     [Fact]
     public void PropertiesSource_Outputs_CorrectControlHierarchy()
     {
-        var source = "(stack-panel spacing=\"5\" (label text=\"Label\"))";
+        const string source = "(stack-panel spacing=\"5\" (label text=\"Label\"))";
 
         var actual = Deserializer.Run(Parser.Run(Lexer.Run(source)));
 
