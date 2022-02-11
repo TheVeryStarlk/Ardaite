@@ -63,7 +63,7 @@ public class Deserializer
 
             default:
             {
-                throw new SerializationException($"Unrecognized node {tagNode.Identifier}");
+                throw new DeserializerException($"Unrecognized node {tagNode.Identifier}");
             }
         }
     }
