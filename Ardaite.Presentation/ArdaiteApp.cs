@@ -4,7 +4,7 @@ using SFML.Graphics;
 
 namespace Ardaite.Presentation;
 
-public class ArdaiteApp
+public sealed class ArdaiteApp
 {
     private readonly IControl control;
 

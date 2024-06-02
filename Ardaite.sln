@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F9DB6506
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ardaite.Presentation.Tests", "Ardaite.Presentation.Tests\Ardaite.Presentation.Tests.csproj", "{25072966-3F58-4D11-9BAA-1EED2D141A54}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ardaite.Demo", "Ardaite.Demo\Ardaite.Demo.csproj", "{248A9A92-2735-4DE3-827B-96AC3BDE8108}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{25072966-3F58-4D11-9BAA-1EED2D141A54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25072966-3F58-4D11-9BAA-1EED2D141A54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25072966-3F58-4D11-9BAA-1EED2D141A54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{248A9A92-2735-4DE3-827B-96AC3BDE8108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{248A9A92-2735-4DE3-827B-96AC3BDE8108}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{248A9A92-2735-4DE3-827B-96AC3BDE8108}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{248A9A92-2735-4DE3-827B-96AC3BDE8108}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

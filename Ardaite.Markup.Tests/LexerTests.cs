@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Ardaite.Markup.Tests;
 
-public class LexerTests
+public sealed class LexerTests
 {
     [Fact]
     public void CustomSource_Outputs_CorrectTokens()
@@ -14,13 +14,13 @@ public class LexerTests
 
         var expected = new Token[]
         {
-            new Token(TokenType.LeftParenthesis, "("),
-            new Token(TokenType.Identifier, "grid"),
-            new Token(TokenType.LeftParenthesis, "("),
-            new Token(TokenType.Identifier, "button"),
-            new Token(TokenType.RightParenthesis, ")"),
-            new Token(TokenType.RightParenthesis, ")"),
-            new Token(TokenType.End, "\0")
+            new(TokenType.LeftParenthesis, "("),
+            new(TokenType.Identifier, "grid"),
+            new(TokenType.LeftParenthesis, "("),
+            new(TokenType.Identifier, "button"),
+            new(TokenType.RightParenthesis, ")"),
+            new(TokenType.RightParenthesis, ")"),
+            new(TokenType.End, "\0")
         };
 
         Assert.Equal(expected, actual);
@@ -35,13 +35,13 @@ public class LexerTests
 
         var expected = new Token[]
         {
-            new Token(TokenType.LeftParenthesis, "("),
-            new Token(TokenType.Identifier, "button"),
-            new Token(TokenType.Identifier, "text"),
-            new Token(TokenType.Equal, "="),
-            new Token(TokenType.String, "button"),
-            new Token(TokenType.RightParenthesis, ")"),
-            new Token(TokenType.End, "\0")
+            new(TokenType.LeftParenthesis, "("),
+            new(TokenType.Identifier, "button"),
+            new(TokenType.Identifier, "text"),
+            new(TokenType.Equal, "="),
+            new(TokenType.String, "button"),
+            new(TokenType.RightParenthesis, ")"),
+            new(TokenType.End, "\0")
         };
 
         Assert.Equal(expected, actual);

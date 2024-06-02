@@ -3,17 +3,12 @@ using SFML.System;
 
 namespace Ardaite.Presentation.Controls;
 
-public class StackPanelControl : ILayoutControl
+public sealed class StackPanelControl(int spacing = 15) : ILayoutControl
 {
-    public int Spacing { get; set; }
+    public int Spacing { get; set; } = spacing;
     public Vector2f Position { get; set; }
-    public List<IControl> Children { get; set; }
-
-    public StackPanelControl(int spacing = 15)
-    {
-        Spacing = spacing;
-        Children = new List<IControl>();
-    }
+    public List<IControl> Children { get; set; } = new();
+    public float Height => Children.Sum(child => child.Height);
 
     public void Update()
     {
@@ -21,7 +16,7 @@ public class StackPanelControl : ILayoutControl
         foreach (var control in Children)
         {
             control.Position = new Vector2f(control.Position.X, currentSpacing);
-            currentSpacing += Spacing;
+            currentSpacing += Spacing + control.Height;
             control.Update();
         }
     }

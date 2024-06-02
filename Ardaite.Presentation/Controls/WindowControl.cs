@@ -4,10 +4,11 @@ using SFML.Window;
 
 namespace Ardaite.Presentation.Controls;
 
-public class WindowControl : IControl
+public sealed class WindowControl : IControl
 {
     public Vector2f Position { get; set; }
     public RenderWindow RenderWindow { get; }
+    public float Height { get; }
 
     private readonly IControl control;
 
@@ -17,6 +18,7 @@ public class WindowControl : IControl
 
         RenderWindow = new RenderWindow(new VideoMode(width, height), title);
         RenderWindow.Closed += (_, _) => RenderWindow.Close();
+        Height = height;
     }
 
     public void Update()

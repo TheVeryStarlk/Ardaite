@@ -2,5 +2,5 @@
 
 public interface IFontSelectionStage
 {
-    public IMarkupSelectionStage UseFont(string path);
+    public IMarkupSelectionStage LoadFont(string path);
 }

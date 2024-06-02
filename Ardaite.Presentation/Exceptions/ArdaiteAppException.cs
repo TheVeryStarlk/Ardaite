@@ -1,9 +1,3 @@
 ﻿namespace Ardaite.Presentation.Exceptions;
 
-public class ArdaiteAppException : Exception
-{
-    public ArdaiteAppException(string message) : base(message)
-    {
-        
-    }
-}
+public sealed class ArdaiteAppException(string message) : Exception(message);

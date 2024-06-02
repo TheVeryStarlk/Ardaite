@@ -3,19 +3,13 @@ using SFML.System;
 
 namespace Ardaite.Presentation.Controls;
 
-public class LabelControl : IGraphicalControl
+public sealed class LabelControl(string text = "", string color = "black", int size = 15) : IGraphicalControl
 {
-    public string Text { get; set; }
-    public string Color { get; set; }
+    public string Text { get; set; } = text;
+    public string Color { get; set; } = color.ToLower();
     public Vector2f Position { get; set; }
-    public Vector2f Size { get; set; }
-
-    public LabelControl(string text = "", string color = "black", int size = 15)
-    {
-        Text = text;
-        Size = new Vector2f(size, size);
-        Color = color.ToLower();
-    }
+    public Vector2f Size { get; set; } = new(size, size);
+    public float Height { get; private set; }
 
     public void Update()
     {
@@ -29,7 +23,7 @@ public class LabelControl : IGraphicalControl
             throw new InvalidOperationException($"{font} was null");
         }
 
-        new Text(Text, font)
+        var text = new Text(Text, font)
         {
             CharacterSize = (uint) Size.X,
             Position = Position,
@@ -46,6 +40,10 @@ public class LabelControl : IGraphicalControl
                 "transparent" => SFML.Graphics.Color.Transparent,
                 _ => SFML.Graphics.Color.Black
             }
-        }.Draw(renderTarget, RenderStates.Default);
+        };
+        
+        text.Draw(renderTarget, RenderStates.Default);
+
+        Height = text.GetLocalBounds().Height;
     }
 }

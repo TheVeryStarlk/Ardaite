@@ -5,15 +5,8 @@ using Ardaite.Presentation.Exceptions;
 
 namespace Ardaite.Presentation;
 
-public class Deserializer
+public sealed class Deserializer(TagNode source)
 {
-    private readonly TagNode source;
-
-    public Deserializer(TagNode source)
-    {
-        this.source = source;
-    }
-
     public static IControl Run(TagNode source)
         => new Deserializer(source).Run();
 
@@ -34,7 +27,7 @@ public class Deserializer
 
                 if (children.Count is > 1 or 0)
                 {
-                    throw new DeserializerException("Window control should have only one child");
+                    throw new DeserializerException("Window control should have at least one child");
                 }
 
                 return new WindowControl(children[0], (uint) ParseOrThrow(widthProperty),

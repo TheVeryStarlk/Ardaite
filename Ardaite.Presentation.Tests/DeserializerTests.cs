@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Ardaite.Presentation.Tests;
 
-public class DeserializerTests
+public sealed class DeserializerTests
 {
     [Fact]
     public void PropertiesSource_Outputs_CorrectControlHierarchy()

@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Ardaite.Markup.Tests;
 
-public class ParserTests
+public sealed class ParserTests
 {
     [Fact]
     public void IdentifierSource_Outputs_CorrectIdentifier()
@@ -44,7 +44,7 @@ public class ParserTests
 
         var expected = new TagNode("grid", new Dictionary<string, StringNode>(), new List<TagNode>()
         {
-            new TagNode("button", new Dictionary<string, StringNode>(), new List<TagNode>())
+            new("button", new Dictionary<string, StringNode>(), new List<TagNode>())
         });
 
         Assert.Equal(expected.Children.FirstOrDefault()?.Identifier, actual.Children.FirstOrDefault()?.Identifier);

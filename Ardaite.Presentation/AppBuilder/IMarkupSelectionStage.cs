@@ -2,5 +2,5 @@
 
 public interface IMarkupSelectionStage
 {
-    public IAppBuildingStage UseMarkup(string path);
+    public IAppBuildingStage UseMarkup(string content);
 }

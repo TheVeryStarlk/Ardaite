@@ -3,12 +3,8 @@ using Ardaite.Markup.Lexing;
 
 namespace Ardaite.Markup.Parsing;
 
-public class Parser : StreamReader<Token>
+public sealed class Parser(Token[] source) : StreamReader<Token>(source, source.Last())
 {
-    public Parser(Token[] source) : base(source, source.Last())
-    {
-    }
-
     public static TagNode Run(Token[] source)
         => new Parser(source).Run();
 

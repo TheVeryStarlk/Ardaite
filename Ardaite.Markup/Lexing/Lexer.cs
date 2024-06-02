@@ -2,18 +2,11 @@
 
 namespace Ardaite.Markup.Lexing;
 
-public class Lexer : StreamReader<char>
+public sealed class Lexer(string source) : StreamReader<char>(source.ToCharArray(), '\0')
 {
     private int start;
 
-    private readonly string source;
-    private readonly List<Token> tokens;
-
-    public Lexer(string source) : base(source.ToCharArray(), '\0')
-    {
-        this.source = source;
-        tokens = new List<Token>();
-    }
+    private readonly List<Token> tokens = new();
 
     public static Token[] Run(string source)
         => new Lexer(source).Run();

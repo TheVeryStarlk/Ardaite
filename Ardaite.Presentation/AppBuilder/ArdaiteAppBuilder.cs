@@ -5,7 +5,7 @@ using SFML.Graphics;
 
 namespace Ardaite.Presentation.AppBuilder;
 
-public class ArdaiteAppBuilder : IFontSelectionStage, IMarkupSelectionStage, IAppBuildingStage
+public sealed class ArdaiteAppBuilder : IFontSelectionStage, IMarkupSelectionStage, IAppBuildingStage
 {
     private Font? font;
     private IControl? control;
@@ -17,15 +17,15 @@ public class ArdaiteAppBuilder : IFontSelectionStage, IMarkupSelectionStage, IAp
     public static IFontSelectionStage CreateBuilder()
         => new ArdaiteAppBuilder();
 
-    public IMarkupSelectionStage UseFont(string path)
+    public IMarkupSelectionStage LoadFont(string path)
     {
         font = new Font(path);
         return this;
     }
 
-    public IAppBuildingStage UseMarkup(string path)
+    public IAppBuildingStage UseMarkup(string content)
     {
-        var tokens = Lexer.Run(File.ReadAllText(path));
+        var tokens = Lexer.Run(content);
         var tagNode = Parser.Run(tokens);
         control = Deserializer.Run(tagNode);
 

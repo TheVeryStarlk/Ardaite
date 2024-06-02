@@ -6,6 +6,8 @@ namespace Ardaite.Presentation.Controls;
 public interface IControl
 {
     public Vector2f Position { get; set; }
+    
+    public float Height { get; }
 
     public void Update();
 
