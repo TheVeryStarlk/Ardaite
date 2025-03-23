@@ -17,7 +17,3 @@ ArdaiteAppBuilder
     .Build()
     .Run();
 ```
-
-<p align="center">
-  <img align="center" src="https://i.imgur.com/hKbAmbK.png">
-</p>
